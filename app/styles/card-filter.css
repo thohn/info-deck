@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+
+::-webkit-input-placeholder {
+  color: #8DD2F0;
+}
+
+#cardFilter {
+  color: #FFFFFF;
+}

@@ -1,0 +1,14 @@
+<link rel="import" href="../bower_components/core-input/core-input.html">
+
+<polymer-element name="card-filter" attributes="filterText">
+  <template>
+    <link rel="stylesheet" type="text/css" href="../styles/card-filter.css">
+    <input
+      is="core-input"
+      id="cardFilter" 
+      placeholder="Filter Cards..." 
+      flex value="{{filterText}}" committedvalue="{{filterText}}"
+      on-keypress="{{updateCards}}"></input>
+  </template>
+  <script type="text/javascript" src="../scripts/card-filter.js"></script>
+</polymer-element>

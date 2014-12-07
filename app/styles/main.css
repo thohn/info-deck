@@ -1,0 +1,52 @@
+html,body {
+  height: 100%;
+  margin: 0;
+  background-color: #00A6D7;
+  font-family: 'RobotoDraft', sans-serif;
+}
+core-header-panel {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+core-toolbar {
+  background: #23BDED;
+  color: #FFFFFF;
+}
+#tabs {
+  width: 100%;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html /deep/ paper-dialog {
+  box-shadow: 0px 0px 10px #888888;
+  -moz-box-shadow: 0px 0px 10px #888888;
+  -webkit-box-shadow: 0px 0px 10px #888888;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+.container {
+  width:99%;
+  margin: 10px auto;
+}
+core-drawer-panel:not([narrow]) #navicon {
+  display: none;
+}
+#sidePanel {
+  background: #CCCCCC;
+}
+@media (min-width: 481px) {
+  #tabs {
+    width: 200px;
+  }
+  .container {
+    width: 100%;
+  }
+}
+

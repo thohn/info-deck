@@ -1,0 +1,58 @@
+[
+  {
+    "uid": 1,
+    "text" : "<b>Have you heard about the Web Components revolution? {{lvl}}</b>",
+    "title" : "Eric",
+    "containsFilter" : true,
+    "isEditing" : true
+  },
+  {
+    "uid": 2,
+    "text" : "<p>Loving this Polymer thing.</p><p>Pretty sure I came up with that first. {{title}}!</p>",
+    "title" : "Rob",
+    "containsFilter" : true,
+    "isEditing" : false
+  },
+    {
+    "uid": 3,
+    "text" : "<h1 style='color:red;'>TODO</h1><div>So last year... I was lvl {{lvl}} my half lvl is {{lvl / 2 | round(0, 'floor')}}</div><input type='number' min='1' value={{lvl}}></input>",
+    "title" : "Dimitri",
+    "containsFilter" : true,
+    "isEditing" : false
+  },
+  {
+    "uid": 4,
+    "text" : "Pretty sure I came up with that first.",
+    "title" : "Ada",
+    "containsFilter" : true,
+    "isEditing" : false
+  },
+  {
+    "uid": 5,
+    "text" : "Yo, I heard you like components, so I put a component in your component.Yo, I heard you like components, so I put a component in your component.Yo, I heard you like components, so I put a component in your component.Yo, I heard you like components, so I put a component in your component.Yo, I heard you like components, so I put a component in your component.<br/>Yo, I heard you like components, so I put a component in your component.Yo, I heard you like components, so I put a component in your component.Yo, I heard you like components, so I put a component in your component.Yo, I heard you like components, so I put a component in your component.Yo, I heard you like components, so I put a component in your component.",
+    "title" : "Grace",
+    "containsFilter" : true,
+    "isEditing" : false
+  },
+  {
+    "uid": 6,
+    "text" : "Centralize, centrailize.",
+    "title" : "John",
+    "containsFilter" : true,
+    "isEditing" : false
+  },
+  {
+    "uid": 7,
+    "text" : "Has anyone seen my cat?",
+    "title" : "Zelda",
+    "containsFilter" : true,
+    "isEditing" : false
+  },
+  {
+    "uid": 8,
+    "text" : "Decentralize!",
+    "title" : "Norbert",
+    "containsFilter" : true,
+    "isEditing" : false
+  }
+]

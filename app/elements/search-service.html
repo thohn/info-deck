@@ -1,0 +1,12 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<polymer-element name="search-service" attributes="cards">
+  <template>
+    <template if="{{cards.length === 0}}">
+      <style>:host {display: block;}</style>
+      <form id="fileForm">
+        <input type="file" name="File" id="file" on-change="{{setFiles}}">
+      </form>
+    </template>
+  </template>
+  <script type="text/javascript" src="../scripts/search-service.js"></script>
+</polymer-element>

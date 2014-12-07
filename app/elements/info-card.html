@@ -1,0 +1,33 @@
+﻿<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-icon-button/core-icon-button.html">
+﻿<link rel="import" href="../bower_components/juicy-html/juicy-html.html">
+<link rel="import" href="../bower_components/polymer-filters/polymer-filters.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
+<link rel="import" href="app-globals.html">
+
+<polymer-element name="info-card" draggable="true" class="item" self-center>
+  <template>
+    <app-globals id="globals"></app-globals>
+    <link rel="stylesheet" type="text/css" href="../styles/info-card.css">
+    <template if="{{!card.isEditing}}">
+      <div class="card-header" layout horizontal center>
+        <h2>{{card.title}}</h2>
+        <core-icon-button icon="create" class="editButton" on-click="{{editCard}}"></core-icon-button>
+        <core-icon-button icon="delete" class="deleteButton" on-click="{{deleteCard}}"></core-icon-button>
+      </div>
+      <!--template is="juicy-html" bind="{{card}}" content="{{card.text}}"></template-->
+      <marked-element text="{{card.text}}"></marked-element>
+    </template>
+    <template if="{{card.isEditing}}">
+      <div class="card-header" layout horizontal center>
+        <input style="width:180px;" placeholder="Enter a card title here" value="{{card.title}}"></input>
+        <core-icon-button icon="create" class="editButton" on-click="{{editCard}}"></core-icon-button>
+        <core-icon-button icon="delete" class="deleteButton" on-dblclick="{{deleteCard}}"></core-icon-button>
+      </div>
+      <textarea style="width:250px;max-width:250px;height:300px;" placeholder="Enter your html here" value="{{card.text}}">
+      </textarea>
+    </template>
+  </template>
+  <script type="text/javascript" src="../scripts/info-card.js"></script>
+</polymer-element>
