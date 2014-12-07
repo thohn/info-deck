@@ -1,4 +1,4 @@
 info-deck
 =========
 
-An Information Manager using Polymer webcomponenets
+An Information Manager using Polymer webcomponents
