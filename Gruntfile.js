@@ -129,6 +129,16 @@ module.exports = function (grunt) {
         }
       }
     },
+    uglify: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/scripts',
+          src: '**/*.js',
+          dest: '<%= yeoman.dist %>/scripts'
+        }]
+      }
+    },
     imagemin: {
       dist: {
         files: [{

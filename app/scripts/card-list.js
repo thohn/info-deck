@@ -1,4 +1,6 @@
-Polymer('card-list', {
+(function(globals){
+'use strict';
+new globals.Polymer('card-list', {
   publish: {
     currentFilterText: '',
     handleFilterUpdate: function(updatedText) {
@@ -6,7 +8,7 @@ Polymer('card-list', {
       var cards = this.shadowRoot.querySelectorAll('info-card');
       for(var i = 0; i<cards.length; i++) {
         this.filterSearch(cards[i].templateInstance.model.card);
-      };
+      }
       this.renderGrid();
     },
     addCard: function() {
@@ -16,23 +18,23 @@ Polymer('card-list', {
         currentVars = card.templateInstance.model.card.vars;
       }
       this.$.service.templateInstance.model.cards.unshift({
-        "text" : "",
-        "title" : "",
-        "containsFilter" : true,
-        "vars" : currentVars,
-        "isEditing" : true
+        'text' : '',
+        'title' : '',
+        'containsFilter' : true,
+        'vars' : currentVars,
+        'isEditing' : true
       });
     },
     saveCards: function() {
       var data = JSON.stringify(this.cards);
-      if(data !== "[]"){
-        var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
-        saveAs(blob, "cards.json");
+      if(data !== '[]'){
+        var blob = new Blob([data], {type: 'text/plain;charset=utf-8'});
+        globals.saveAs(blob, 'cards.json');
       }
     },
     uploadCards: function() {
         if (!this.$.service.$.file.files.length) {
-          alert('Please include a file');
+          globals.alert('Please include a file');
           return;
         }
         this.$.service.$.ajax.go();
@@ -46,53 +48,55 @@ Polymer('card-list', {
         var containerWidth = this.offsetWidth;
         var centeredLeft = 10;
         var gap = 10, newLeft = centeredLeft, newTop = 10;
+	var cols;
+	var tops;
+	var card;
         if(cards[0]) {
           var cardWidth = cards[0].offsetWidth;
           var numberOfCards = cards.length;
-          var cols = Math.floor(containerWidth / (cards[0].offsetWidth + gap));
+          cols = Math.floor(containerWidth / (cards[0].offsetWidth + gap));
           if(numberOfCards >= cols) {
             centeredLeft = (containerWidth/2) - (((cardWidth*cols) + (gap*(cols-1)))/2);
           } else {
             centeredLeft = (containerWidth/2) - (((cardWidth*numberOfCards) + (gap*(numberOfCards-1)))/2);
           }
-          var tops = [];
-          var topSize = cols
+          tops = [];
+          var topSize = cols;
           while(topSize--) {tops.push(newTop);}
-          var card = cards[0];
+          card = cards[0];
           newLeft = centeredLeft;
-          cards[0].style.top = newTop+"px";
-          cards[0].style.left = newLeft+"px";
+          cards[0].style.top = newTop+'px';
+          cards[0].style.left = newLeft+'px';
         } else {
           cols = 0;
         }
         for(var i = 1; i < cards.length; i++) {
           var col = i % cols;
-          if(col == 0) {
-            var card = cards[i-cols];
+          if(col === 0) {
+            card = cards[i-cols];
             tops[col] += card.offsetHeight + gap;
             newLeft = centeredLeft;
             newTop = tops[col];
-            cards[i].style.top = newTop+"px";
-            cards[i].style.left = newLeft+"px";
+            cards[i].style.top = newTop+'px';
+            cards[i].style.left = newLeft+'px';
           } else {
             if(cards[i-cols]) {
-              var card = cards[i-cols];
+              card = cards[i-cols];
               tops[col] += card.offsetHeight + gap;
               newTop = tops[col];
-              cards[i].style.top = newTop+"px";
+              cards[i].style.top = newTop+'px';
             }
-            var card = cards[i-1];
+            card = cards[i-1];
             newLeft += card.offsetWidth + gap;
-            cards[i].style.top = newTop+"px";
-            cards[i].style.left = newLeft+"px";
+            cards[i].style.top = newTop+'px';
+            cards[i].style.left = newLeft+'px';
           }
         }
       });
     }
   },
   filterSearch: function(card) {
-    if((this.checkValue(card.text)) || (this.checkValue(card.title))
-      || (this.currentFilterText === '')) {
+    if((this.checkValue(card.text)) || (this.checkValue(card.title)) || (this.currentFilterText === '')) {
       return this.changeContainsFilter(card, true);
     } else {
       return this.changeContainsFilter(card, false);
@@ -121,15 +125,15 @@ Polymer('card-list', {
       var cards = this.shadowRoot.querySelectorAll('info-card');
       for(var i = 0; i<cards.length; i++) {
         cards[i].templateInstance.model.card.vars = newValue;
-      };
+      }
     });
     this.addEventListener('renderGrid', this.renderGrid, false);
-    this.addEventListener('finishedADrop', function(event) {
+    this.addEventListener('finishedADrop', function() {
       var cards = this.shadowRoot.querySelectorAll('info-card');
       for(var i = 0; i<cards.length; i++) {
         cards[i].style.opacity = 1;
-        cards[i].style.border = "none";
-      };
+        cards[i].style.border = 'none';
+      }
     });
     this.addEventListener('movedCard', function(event) {
       var movedCard = event.detail.newCard;
@@ -143,3 +147,4 @@ Polymer('card-list', {
     });
   }
 });
+}(this));

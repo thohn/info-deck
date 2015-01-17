@@ -1,26 +1,28 @@
-Polymer('info-card', {
+(function(globals) {
+'use strict';
+new globals.Polymer('info-card', {
   publish: {
     card: {
       value: {}
     }
   },
-  editCard: function(event, detail, sender) {
+  editCard: function() {
     this.card.isEditing = !this.card.isEditing;
-    var value = Path.get('card.vars').getValueFrom(this);
+    var value = globals.Path.get('card.vars').getValueFrom(this);
     this.fire('varsExternallyUpdated', {vars: value});
     this.fire('renderGrid');
   },
-  deleteCard: function(event, detail, sender) {
-    this.fire("deleteCard", {card: this.card});
+  deleteCard: function() {
+    this.fire('deleteCard', {card: this.card});
   },
   ready: function() {
     function handleDragStart(e) {
-      this.style.opacity = '0.4';  // this / e.target is the source node.
+      e.target.style.opacity = '0.4';  // this / e.target is the source node.
       
-      dragSrcEl = this;
+      globals.dragSrcEl = e.target;
 
       e.dataTransfer.effectAllowed = 'move';
-      var cardData = JSON.stringify(this.card);
+      var cardData = JSON.stringify(e.target.card);
       e.dataTransfer.setData('text', cardData);
     }
 
@@ -36,11 +38,11 @@ Polymer('info-card', {
 
     function handleDragEnter(e) {
       // this / e.target is the current hover target.
-      this.style.border = "2px dashed #000000";
+      e.target.style.border = '2px dashed #000000';
     }
 
     function handleDragLeave(e) {
-      this.style.border = "none";
+      e.target.style.border = 'none';
     }
     function handleDrop(e) {
       if (e.stopPropagation) {
@@ -48,20 +50,15 @@ Polymer('info-card', {
       }
 
       // Don't do anything if dropping the same column we're dragging.
-      if (dragSrcEl != this) {
-        //dragSrcEl.card = this.card;
-        //var otherCard = JSON.parse(e.dataTransfer.getData("text"));
-        this.fire('movedCard', {newCard: dragSrcEl.card, currentCard: this.card});
-        /*this.card = otherCard;
-        var value = Path.get('card.vars').getValueFrom(this);
-        this.fire('varsExternallyUpdated', {vars: value});*/
+      if (globals.dragSrcEl !== e.target) {
+        e.target.fire('movedCard', {newCard: globals.dragSrcEl.card, currentCard: e.target.card});
       }
 
       return false;
     }
 
     function handleDragEnd(e) {
-      this.fire("finishedADrop");
+      e.target.fire('finishedADrop');
     }
     this.addEventListener('dragstart', handleDragStart, false);
     this.addEventListener('dragenter', handleDragEnter, false);
@@ -71,3 +68,4 @@ Polymer('info-card', {
     this.addEventListener('dragend', handleDragEnd, false);
   }
 });
+}(this));
