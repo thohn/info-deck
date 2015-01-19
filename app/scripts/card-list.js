@@ -18,8 +18,8 @@ new globals.Polymer('card-list', {
         currentVars = card.templateInstance.model.card.vars;
       }
       this.$.service.templateInstance.model.cards.unshift({
-        'text' : '',
-        'title' : '',
+        'text' : [],
+        'title' : 'New Card',
         'containsFilter' : true,
         'vars' : currentVars,
         'isEditing' : true
@@ -106,7 +106,8 @@ new globals.Polymer('card-list', {
     return (this.contains(value, this.currentFilterText) > -1);
   },
   contains: function(str1, str2) {
-    return str1.toLowerCase().indexOf(str2);
+    var val = JSON.stringify(str1);
+    return val.toLowerCase().indexOf(str2);
   }, 
   changeContainsFilter: function(card, value) {
         card.containsFilter = value;

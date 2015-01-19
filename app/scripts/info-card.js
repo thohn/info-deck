@@ -7,13 +7,17 @@ new globals.Polymer('info-card', {
     }
   },
   editCard: function() {
-    this.card.isEditing = !this.card.isEditing;
+    this.card.isEditing = !this.card.isEditing;	
     var value = globals.Path.get('card.vars').getValueFrom(this);
     this.fire('varsExternallyUpdated', {vars: value});
     this.fire('renderGrid');
   },
   deleteCard: function() {
     this.fire('deleteCard', {card: this.card});
+  },
+  addElement: function(e) {
+    var id = (e.srcElement.getAttribute("data-typeID"));	
+    this.card.text.push({ description: "", typeID: id, options: [], question: "" });
   },
   ready: function() {
     function handleDragStart(e) {
