@@ -1,0 +1,36 @@
+ul,li 
+{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.form_element
+{
+    border-bottom:1px solid #dfdfdf;
+    clear:both;
+    padding:10px;
+}
+.line
+{
+    clear:both;
+    border-bottom:1px solid #dfdfdf;
+}
+.description
+{
+    color:#999999;
+    font-style:italic;
+    margin-top:5px;
+    font-size:80%;
+}
+.icon_remove {
+    cursor:pointer;
+    color: #afafaf;
+    width: 12px;
+    height: 12px;
+}
+.right {
+  float: right;
+}
+.clearfix {
+  clear: both;
+}

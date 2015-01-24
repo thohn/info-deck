@@ -16,8 +16,8 @@ new globals.Polymer('info-card', {
     this.fire('deleteCard', {card: this.card});
   },
   addElement: function(e) {
-    var id = (e.srcElement.getAttribute("data-typeID"));	
-    this.card.text.push({ description: "", typeID: id, options: [], question: "" });
+    var id = (e.srcElement.getAttribute('data-typeID'));	
+    this.card.text.push({ description: '', typeID: id, options: [], question: '' });
   },
   ready: function() {
     function handleDragStart(e) {

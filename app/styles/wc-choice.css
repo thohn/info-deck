@@ -1,0 +1,19 @@
+.icon_remove,.icon_add
+{
+    cursor:pointer;
+    width: 12px;
+    height: 12px;
+    color: #afafaf;
+}
+.left {
+  float: left;
+}
+.clearfix {
+  clear: both;
+}
+.pointer {
+  float: right;	
+}
+.padding_left {
+  padding-left: 10px;
+}

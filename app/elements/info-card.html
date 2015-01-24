@@ -3,9 +3,7 @@
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/marked-element/marked-element.html">
 
-<link rel="import" href="wc-icon.html" />
 <link rel="import" href="wc-form.html" />
-<link rel="import" href="wc-button.html" />
 
 <link rel="import" href="app-globals.html">
 
@@ -14,34 +12,27 @@
     <app-globals id="globals"></app-globals>
     <link rel="stylesheet" type="text/css" href="../styles/info-card.css">
     
-    <template if="{{!card.isEditing}}">
       <div class="card-header" layout horizontal center>
-        <h2>{{card.title}}</h2>
-        <core-icon-button icon="create" class="editButton" on-click="{{editCard}}"></core-icon-button>
-        <core-icon-button icon="delete" class="deleteButton" on-dblclick="{{deleteCard}}"></core-icon-button>
+        <template if="{{!card.isEditing}}">
+            <h2>{{card.title}}</h2>
+        </template>
+        <template if="{{card.isEditing}}">
+                <input style="width:180px;" placeholder="Enter a card title here" value="{{card.title}}"></input>
+        </template>
+        <core-icon-button title="Click To Toggle Edit Mode" icon="create" class="editButton" on-click="{{editCard}}"></core-icon-button>
+        <core-icon-button title="Double Click to Remove Card" icon="delete" class="deleteButton" on-dblclick="{{deleteCard}}"></core-icon-button>
       </div>
       
       <wc-form elements="{{card.text}}" editMode="{{card.isEditing}}"	></wc-form>
-    </template>
-    <template if="{{card.isEditing}}">
-    
-        
-      <div class="card-header" layout horizontal center>
-        <input style="width:180px;" placeholder="Enter a card title here" value="{{card.title}}"></input>
-        <core-icon-button icon="create" class="editButton" on-click="{{editCard}}"></core-icon-button>
-        <core-icon-button icon="delete" class="deleteButton" on-dblclick="{{deleteCard}}"></core-icon-button>
-      </div>
-      
-      <wc-form elements="{{card.text}}" editMode="{{card.isEditing}}"></wc-form>
-      
+          
+    <template if="{{card.isEditing}}"> 
       <div>
-        <core-icon-button data-typeID="1" icon="subject" on-click="{{addElement}}"></core-icon-button>
-        <core-icon-button data-typeID="2" icon="done-all" on-click="{{addElement}}"></core-icon-button>
-        <core-icon-button data-typeID="3" icon="done" on-click="{{addElement}}"></core-icon-button>
-        <core-icon-button data-typeID="4" icon="remove" on-click="{{addElement}}"></core-icon-button>
-        <core-icon-button data-typeID="5" icon="filter-list" on-click="{{addElement}}"></core-icon-button>
+        <core-icon-button title="Input Field" data-typeID="1" icon="input" on-click="{{addElement}}"></core-icon-button>
+        <core-icon-button title="Radio List" data-typeID="2" icon="radio-button-on" on-click="{{addElement}}"></core-icon-button>
+        <core-icon-button title="Check List" data-typeID="3" icon="check-box" on-click="{{addElement}}"></core-icon-button>
+        <core-icon-button title="Drop Down" data-typeID="5" icon="arrow-drop-down-circle" on-click="{{addElement}}"></core-icon-button>
+        <core-icon-button title="Line Break" data-typeID="4" icon="more-horiz" on-click="{{addElement}}"></core-icon-button>
       </div>
-      </textarea>
     </template>
   </template>
   <script type="text/javascript" src="../scripts/info-card.js"></script>
