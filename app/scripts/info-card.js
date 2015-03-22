@@ -4,16 +4,33 @@ new globals.Polymer('info-card', {
   publish: {
     card: {
       value: {}
-    }
+    },
+    options: {}
   },
   editCard: function() {
     this.card.isEditing = !this.card.isEditing;
+    this.card.renderedText = '<div class="markdown-body">' + globals.marked(this.card.text, this.options) + '</div>';
     var value = globals.Path.get('card.vars').getValueFrom(this);
     this.fire('varsExternallyUpdated', {vars: value});
     this.fire('renderGrid');
   },
   deleteCard: function() {
     this.fire('deleteCard', {card: this.card});
+  },
+  created: function() {
+  	this.options = {
+			renderer: new globals.marked.Renderer(),
+			gfm: true,
+			tables: true,
+			breaks: true,
+			pedantic: true,
+			sanitize: false,
+			smartLists: true,
+			smartypants: true,
+			highlight: function (code) {
+				return globals.hljs.highlightAuto(code).value;
+			}						
+		};
   },
   ready: function() {
     function handleDragStart(e) {
@@ -38,7 +55,7 @@ new globals.Polymer('info-card', {
 
     function handleDragEnter(e) {
       // this / e.target is the current hover target.
-      e.target.style.border = '2px dashed #000000';
+      e.target.style.border = '5px solid #23BDED';
     }
 
     function handleDragLeave(e) {
@@ -66,6 +83,29 @@ new globals.Polymer('info-card', {
     this.addEventListener('dragleave', handleDragLeave, false);
     this.addEventListener('drop', handleDrop, false);
     this.addEventListener('dragend', handleDragEnd, false);
+		
+		PolymerExpressions.prototype.assignTo = function(val, variableName) {
+			this.vars[variableName] = val;
+			return val;
+		};
+		PolymerExpressions.prototype.zeroIfNegative = function(val) {
+			return Math.max(0, val) || 0;
+		};
+		
+		PolymerExpressions.prototype.floor = function (val, precision) {
+			precision = precision || 0;
+			var factor = Math.pow(10, precision);
+			var rounder = Math.floor;
+
+			return rounder(val * factor) / factor;
+		};
+		PolymerExpressions.prototype.ceil = function (val, precision) {
+			precision = precision || 0;
+			var factor = Math.pow(10, precision);
+			var rounder = Math.ceil;
+
+			return rounder(val * factor) / factor;
+		};
   }
 });
 }(this));

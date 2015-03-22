@@ -42,6 +42,9 @@ polyfill-next-selector { content: '.card-header h2'; }
 .card-header .deleteButton {
   display: none;
 }
+.markdown-body table {
+	width: 100%;
+}
 .card-header:hover .deleteButton {
   display: block;
   position: absolute;

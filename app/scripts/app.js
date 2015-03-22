@@ -27,12 +27,10 @@
   var helpDialog = document.querySelector('#helpDialog');
   
   document.addEventListener('polymer-ready', function() {
-    console.log('Polymer is ready to rock!');
     list.renderGrid();
   });
   
   document.addEventListener('cardupdate', function(data) {
-    console.log('Caught a filter update. It is set to: ' + data.detail.text);
     list.handleFilterUpdate(data.detail.text);
   });
   

@@ -4,7 +4,6 @@
 function setCards(that) {
   return function(e) {
     that.cards = (JSON.parse(e.target.result)).slice(0);
-    that.fire('varsExternallyUpdated', {vars: that.cards[0].vars});
   };
 }
 
@@ -26,6 +25,7 @@ setFiles: function(e, detail, sender) {
 },
 cardsChanged: function() {
   this.fire('renderGrid');
+  this.fire('varsExternallyUpdated', {vars: this.cards[0].vars});
 }
 });
 }(this));

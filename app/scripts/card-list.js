@@ -48,9 +48,9 @@ new globals.Polymer('card-list', {
         var containerWidth = this.offsetWidth;
         var centeredLeft = 10;
         var gap = 10, newLeft = centeredLeft, newTop = 10;
-	var cols;
-	var tops;
-	var card;
+				var cols;
+				var tops;
+				var card;
         if(cards[0]) {
           var cardWidth = cards[0].offsetWidth;
           var numberOfCards = cards.length;
