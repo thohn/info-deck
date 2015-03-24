@@ -23,7 +23,7 @@
 polyfill-next-selector { content: '.card-header h2'; }
 .card-header ::content h2 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.2em;
   font-weight: 300;
 }
 :host([favorite]) core-icon-button {
@@ -41,9 +41,6 @@ polyfill-next-selector { content: '.card-header h2'; }
 }
 .card-header .deleteButton {
   display: none;
-}
-.markdown-body table {
-	width: 100%;
 }
 .card-header:hover .deleteButton {
   display: block;

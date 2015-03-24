@@ -84,22 +84,22 @@ new globals.Polymer('info-card', {
     this.addEventListener('drop', handleDrop, false);
     this.addEventListener('dragend', handleDragEnd, false);
 		
-		PolymerExpressions.prototype.assignTo = function(val, variableName) {
+		globals.PolymerExpressions.prototype.assignTo = function(val, variableName) {
 			this.vars[variableName] = val;
 			return val;
 		};
-		PolymerExpressions.prototype.zeroIfNegative = function(val) {
+		globals.PolymerExpressions.prototype.zeroIfNegative = function(val) {
 			return Math.max(0, val) || 0;
 		};
 		
-		PolymerExpressions.prototype.floor = function (val, precision) {
+		globals.PolymerExpressions.prototype.floor = function (val, precision) {
 			precision = precision || 0;
 			var factor = Math.pow(10, precision);
 			var rounder = Math.floor;
 
 			return rounder(val * factor) / factor;
 		};
-		PolymerExpressions.prototype.ceil = function (val, precision) {
+		globals.PolymerExpressions.prototype.ceil = function (val, precision) {
 			precision = precision || 0;
 			var factor = Math.pow(10, precision);
 			var rounder = Math.ceil;
