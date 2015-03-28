@@ -1,0 +1,26 @@
+#addList {
+	background-color: #23BDED;
+	margin-left: 10px;
+}
+#sidePanel {
+  background-color: #00A6D7;
+  color: #FFFFFF;
+}
+#navheader {
+  background-color: #23BDED;
+}
+.core-selected {
+	padding-left: 20px;
+	margin-left: -20px;
+  background-color: #23BDED;
+  transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  box-shadow: 0px 0px 6px #888888;
+  -moz-box-shadow: 0px 0px 6px #888888;
+  -webkit-box-shadow: 0px 0px 6px #888888;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}

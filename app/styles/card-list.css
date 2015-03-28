@@ -6,5 +6,12 @@
 
 #cardContainer {
   width: 99%;
-  margin: 0 auto;
+}
+core-toolbar {
+  background: #23BDED;
+  color: #FFFFFF;
+}
+
+#service {
+	margin: 10px auto;
 }

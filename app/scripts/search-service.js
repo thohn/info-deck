@@ -3,12 +3,15 @@
 
 function setCards(that) {
   return function(e) {
-    that.cards = (JSON.parse(e.target.result)).slice(0);
+  	var listObject = JSON.parse(e.target.result);
+  	that.listName = listObject.listName;
+    that.cards = (listObject.cards).slice(0);
   };
 }
 
 new globals.Polymer('search-service', {
 created: function() {
+  this.listName = "New List";
   this.cards = [];
 },
 setFiles: function(e, detail, sender) {
@@ -25,7 +28,9 @@ setFiles: function(e, detail, sender) {
 },
 cardsChanged: function() {
   this.fire('renderGrid');
-  this.fire('varsExternallyUpdated', {vars: this.cards[0].vars});
+  if(this.cards[0] != null ) {
+  	this.fire('varsExternallyUpdated', {vars: this.cards[0].vars});
+  }
 }
 });
 }(this));

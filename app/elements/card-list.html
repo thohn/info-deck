@@ -3,13 +3,21 @@
 <link rel="import" href="info-card.html">
 <link rel="import" href="card-filter.html">
 
-<polymer-element name="card-list" attributes="show">
+<polymer-element name="card-list" attributes="cardList">
   <template>
     <link rel="stylesheet" type="text/css" href="../styles/card-list.css">
 
-    <search-service id="service" layout horizontal center-justified cards="{{cards}}"></search-service>
+    <core-toolbar id="mainheader">
+    	<core-icon-button id="toggleCardListPanel" icon="menu"></core-icon-button>
+      <card-filter flex></card-filter>
+      <div flex>{{cardList.listName}}</div>
+      <core-icon-button id="addCardButton" icon="add"></core-icon-button>
+      <core-icon-button id="toggleHelpButton" icon="help"></core-icon-button>
+      <core-icon-button id="saveButton" icon="file-download"></core-icon-button>
+    </core-toolbar>
+    <search-service id="service" layout horizontal center-justified cards="{{cardList.cards}}" listName="{{cardList.listName}}"></search-service>
     <div id="cardContainer">
-        <template id="repeatList" repeat="{{card in cards}}">
+        <template id="repeatList" repeat="{{card in cardList.cards}}">
           <info-card card="{{card}}" 
           class="item" 
           hidden?="{{!card.containsFilter}}">

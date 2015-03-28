@@ -13,11 +13,12 @@ new globals.Polymer('card-list', {
     },
     addCard: function() {
       var currentVars = {};
-      var card = this.shadowRoot.querySelector('info-card');
+      var card = this.cardList.cards[0];
       if(card !== null) {
         currentVars = card.templateInstance.model.card.vars;
       }
-      this.$.service.templateInstance.model.cards.unshift({
+      //this.$.service.templateInstance.model.cards.unshift({
+      this.cardList.cards.unshift({
         'text' : [],
         'title' : 'New Card',
         'containsFilter' : true,
@@ -26,7 +27,9 @@ new globals.Polymer('card-list', {
       });
     },
     saveCards: function() {
-      var data = JSON.stringify(this.cards);
+      var data = JSON.stringify({'listName': this.listName,
+        'cards':this.cards});
+      console.log(data);
       if(data !== '[]'){
         var blob = new Blob([data], {type: 'text/plain;charset=utf-8'});
         globals.saveAs(blob, 'cards.json');
@@ -47,7 +50,7 @@ new globals.Polymer('card-list', {
         });
         var containerWidth = this.offsetWidth;
         var centeredLeft = 10;
-        var gap = 10, newLeft = centeredLeft, newTop = 10;
+        var gap = 10, newLeft = centeredLeft, newTop = 74;
 				var cols;
 				var tops;
 				var card;
@@ -114,11 +117,34 @@ new globals.Polymer('card-list', {
         return value;
   },
   ready: function () {
+    var that = this;
     this.addEventListener('deleteCard', function(event) {
       this.cards = this.cards.filter(function (item) {
         return item.title !== event.detail.card.title;
       });
     });
+    this.$.toggleHelpButton.addEventListener('click', function() {
+      helpDialog.shadowRoot.querySelector('paper-dialog').toggle();		
+    });
+    this.addEventListener('cardupdate', function(data) {
+      this.handleFilterUpdate(data.detail.text);
+    });
+    
+    window.addEventListener('resize', function() {
+      that.renderGrid();
+    });
+    
+    this.$.addCardButton.addEventListener('click', function() {
+      that.addCard();
+    });
+    this.$.saveButton.addEventListener('click', function() {
+      that.saveCards();
+    });
+    this.$.toggleCardListPanel.addEventListener('click', function() {
+    	this.fire('togglePanel');
+    });
+    
+    this.renderGrid();
   },
   created: function() {
     this.addEventListener('varsExternallyUpdated', function(event) {
@@ -145,7 +171,7 @@ new globals.Polymer('card-list', {
       tempCards.splice(oldPostion, 1);
       tempCards.splice(movedPostion, 0, movedCard);
       this.cards = tempCards;
-    });
+    });   
   }
 });
 }(this));
