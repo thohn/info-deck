@@ -31,6 +31,10 @@ new globals.Polymer('info-card', {
 				return globals.hljs.highlightAuto(code).value;
 			}						
 		};
+	},
+  addElement: function(e) {
+    var id = (e.srcElement.getAttribute('data-typeID'));	
+    this.card.text.push({ description: '', typeID: id, options: [], question: '' });
   },
   ready: function() {
     function handleDragStart(e) {

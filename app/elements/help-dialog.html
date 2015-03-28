@@ -1,24 +1,43 @@
-﻿<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
-<polymer-element name="help-dialog" attributes="show">
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<polymer-element name="help-dialog">
   <template>
     <paper-dialog 
-        id="helpDialog"
-        heading="Help" 
-        transition="paper-dialog-transition-center" 
-        role="dialog" 
-        aria-label="Help" 
-        tabindex="-1" 
-        class="paper-dialog-transition paper-dialog-transition-center" 
-        style="z-index: 12; position: fixed; display: none;">
-        <p>Lorem ipsum dolor sit amet, doming noster at quo, nostrud lucilius rationibus ea duo. Vim no mucius dolores. No bonorum voluptatum vis, has iudicabit consectetuer ne. Nullam sensibus vim id, et quo graeci perpetua.</p>
+    heading="Welcome to Info Deck" transition="core-transition-bottom" role="dialog" aria-label="Help" tabindex="-1" style="z-index: 12; position: fixed; display: none;">
+      <marked-element> 
+---
+The top toolbar contains three buttons on the right: **Add a Card**, **Help Dialog**, and **Download Card List**. On the left, there is a search filter field that will filter all card contents against its value.
 
-        <p>Id qui scripta laboramus dissentiet, verterem partiendo vim at. Stet dissentiet ut mei. Iriure facilis eloquentiam pro eu, nec an esse inciderint. In meliore abhorreant sea. Eros nostro ocurreret at nec. Cu per regione persecuti.</p>
+Just below the toolbar is the deck, where created cards are displayed and organized. If no cards are available, the ability to upload a previously saved card list becomes available. If desired, clicking the **Add a Card** button will start a new list.
 
-        <p>Lorem ipsum dolor sit amet, doming noster at quo, nostrud lucilius rationibus ea duo. Vim no mucius dolores. No bonorum voluptatum vis, has iudicabit consectetuer ne. Nullam sensibus vim id, et quo graeci perpetua.</p>
+A saved card list is a simple plain text document using json syntax.
 
-        <paper-button label="Got it" affirmative="" autofocus="" role="button" tabindex="0" aria-label="Got it" class=""></paper-button>
+---
 
+###Info Card
+An info card contains two fields: A **Card Title** and the **Card's Contents**.
+Mousing over the card's header will reveal two buttons: **Edit** and **Delete**.
+
+Clicking the **Edit** button will toggle the state of the card.
+Double clicking the **Delete** button will destroy the card.
+
+* **Card Title:** A simple identifier for individualizing a card. *If more than one card has the same title, a deletion of one of these cards will delete all of them.*
+* **Card Contents:** A text area that is parsed as markdown syntax.
+
+*"Markdown is not a replacement for HTML, or even close to it. Its syntax is very small, corresponding only to a very small subset of HTML tags. The idea is not to create a syntax that makes it easier to insert HTML tags. In my opinion, HTML tags are already easy to insert. The idea for Markdown is to make it easy to read, write, and edit prose. HTML is a publishing format; Markdown is a writing format. Thus, Markdown’s formatting syntax only addresses issues that can be conveyed in plain text."* - <a href="http://daringfireball.net/" target="_blank">Daring Fireball</a>
+
+For a good list of available markdown syntax items, visit the <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a>
+
+---
+
+###Card List
+Cards are layed out in a Pinterest-style fashion as restricted by their order. In order to modify the list order, simply drag a card to its desired postion, and the rest of the cards will reorder their layout.
+      </marked-element>
+      <paper-button label="Got it" affirmative="" autofocus="" role="button" tabindex="0" aria-label="Got it" class=""></paper-button>
     </paper-dialog>
   </template>
+  <script type="text/javascript" src="../scripts/help-dialog.js"></script>
 </polymer-element>
