@@ -11,7 +11,7 @@ function setCards(that) {
 
 new globals.Polymer('search-service', {
 created: function() {
-  this.listName = "New List";
+  this.listName = 'New List';
   this.cards = [];
 },
 setFiles: function(e, detail, sender) {
@@ -28,7 +28,7 @@ setFiles: function(e, detail, sender) {
 },
 cardsChanged: function() {
   this.fire('renderGrid');
-  if(this.cards[0] != null ) {
+  if(this.cards[0]) {
   	this.fire('varsExternallyUpdated', {vars: this.cards[0].vars});
   }
 }

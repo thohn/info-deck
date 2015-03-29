@@ -5,19 +5,18 @@ new globals.Polymer('card-list', {
     currentFilterText: '',
     handleFilterUpdate: function(updatedText) {
       this.currentFilterText = updatedText.toLowerCase();
-      var cards = this.shadowRoot.querySelectorAll('info-card');
+      var cards = this.cardList.cards;
       for(var i = 0; i<cards.length; i++) {
-        this.filterSearch(cards[i].templateInstance.model.card);
+        this.filterSearch(cards[i]);
       }
       this.renderGrid();
     },
     addCard: function() {
       var currentVars = {};
       var card = this.cardList.cards[0];
-      if(card !== null) {
-        currentVars = card.templateInstance.model.card.vars;
+      if(card) {
+        currentVars = card.vars;
       }
-      //this.$.service.templateInstance.model.cards.unshift({
       this.cardList.cards.unshift({
         'text' : [],
         'title' : 'New Card',
@@ -119,12 +118,12 @@ new globals.Polymer('card-list', {
   ready: function () {
     var that = this;
     this.addEventListener('deleteCard', function(event) {
-      this.cards = this.cards.filter(function (item) {
+      this.cardList.cards = that.cardList.cards.filter(function (item) {
         return item.title !== event.detail.card.title;
       });
     });
     this.$.toggleHelpButton.addEventListener('click', function() {
-      helpDialog.shadowRoot.querySelector('paper-dialog').toggle();		
+      globals.helpDialog.shadowRoot.querySelector('paper-dialog').toggle();		
     });
     this.addEventListener('cardupdate', function(data) {
       this.handleFilterUpdate(data.detail.text);
@@ -151,7 +150,7 @@ new globals.Polymer('card-list', {
       var newValue = event.detail.vars;
       var cards = this.shadowRoot.querySelectorAll('info-card');
       for(var i = 0; i<cards.length; i++) {
-        cards[i].templateInstance.model.card.vars = newValue;
+        cards[i].vars = newValue;
       }
     });
     this.addEventListener('renderGrid', this.renderGrid, false);
@@ -165,12 +164,12 @@ new globals.Polymer('card-list', {
     this.addEventListener('movedCard', function(event) {
       var movedCard = event.detail.newCard;
       var newPositionCard = event.detail.currentCard;
-      var movedPostion = this.cards.indexOf(newPositionCard);
-      var oldPostion = this.cards.indexOf(movedCard);
-      var tempCards = this.cards;
+      var movedPostion = this.cardList.cards.indexOf(newPositionCard);
+      var oldPostion = this.cardList.cards.indexOf(movedCard);
+      var tempCards = this.cardList.cards;
       tempCards.splice(oldPostion, 1);
       tempCards.splice(movedPostion, 0, movedCard);
-      this.cards = tempCards;
+      this.cardList.cards = tempCards;
     });   
   }
 });

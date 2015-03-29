@@ -5,13 +5,18 @@
 #sidePanel {
   background-color: #00A6D7;
   color: #FFFFFF;
+  font-family: 'RobotoDraft', sans-serif;
+}
+#mainPanel {
+  height: 100%;
+  margin: 0;
+  background-color: #00A6D7;
+  font-family: 'RobotoDraft', sans-serif;
 }
 #navheader {
   background-color: #23BDED;
 }
 .core-selected {
-	padding-left: 20px;
-	margin-left: -20px;
   background-color: #23BDED;
   transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
@@ -23,4 +28,7 @@
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+}
+.listItem {
+	padding-left: 10px;
 }

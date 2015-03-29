@@ -20,7 +20,7 @@
 				<core-menu selected="0" selectedIndex="{{index}}">
 					<template repeat="{{list, listIndex in lists}}">
 						<div horizontal center layout>
-							<div self-center flex>{{list.listName}}</div>
+							<div class="listItem" self-center flex>{{list.listName}}</div>
 		      		<paper-icon-button data-index="{{listIndex}}"
 		      				icon="delete" class="deleteButton" 
 		      				self-end
@@ -30,7 +30,7 @@
 				</core-menu>
 				<paper-fab mini id="addList" icon="add"></paper-fab>
 			</core-header-panel>
-			<core-header-panel main>
+			<core-header-panel main id="mainPanel">
 				<card-list cardList="{{lists[index]}}"></card-list>
 			</core-header-panel>
 		</core-drawer-panel>

@@ -3,9 +3,9 @@
   
   new globals.Polymer('info-deck', {
 		publish: {
-		  lists: [{"listName": "New List", "cards": []}],
+		  lists: [{'listName': 'New List', 'cards': []}],
 			addList: function() {
-				var newList = {"listName": "New List", "cards": []};
+				var newList = {'listName': 'New List', 'cards': []};
 				this.lists.push(newList);
 			},
 			deleteList: function(event, detail, target) {
